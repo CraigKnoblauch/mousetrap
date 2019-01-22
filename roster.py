@@ -15,7 +15,12 @@ class Roster:
         with open(roster_filename, 'r') as f:
             for line in f.readlines():
                 stats = line.strip().split(' ')
-                curr_player = Player(stats[0], stats[1], stats[2])
+
+                name = "{} {}".format(stats[0], stats[1])
+                attack_stat = stats[2]
+                block_stat = stats[3]
+
+                curr_player = Player(name, attack_stat, block_stat)
                 self.players.append(curr_player)
 
     def getCopyOfPlayers(self):

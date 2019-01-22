@@ -4,7 +4,7 @@ from flask import render_template
 
 from controller import Controller
 
-
+controller = Controller()
 app = Flask("Verde Valley Volleyball")
 
 
