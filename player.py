@@ -18,4 +18,7 @@ class Player:
         are_equal = self.name == other.name and self.attack_stat == other.attack_stat and self.block_stat == other.block_stat
         return are_equal
 
+    def __str__(self):
+        return self.name
+
 

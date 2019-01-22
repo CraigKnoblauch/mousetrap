@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Verde Valley Volleyball</title>
+    <link href="../styles/style.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .gobutton {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,18 +28,23 @@
         <input type="radio" name="rosterN" value="roster5">5</>
         <input type="submit" value="Select"/>
     </form>
-    <ol>
-        <li>Open a roster</li>
-        <li>List top 3 attackers</li>
-        <li>List top 3 blockers</li>
-        <li>Make and display scrimmage teams</li>
-        <li>Quit</li>
-    </ol>
 
-    <form>
-        <input type="text" name="action"/>
-        <input type="submit" value="Select an action"/>
-    </form>
+    {% if rosterSelected %}
+        <form>Choose an action
+         <select>
+          <option name="actionN" value="action1">List Top 3 Attackers</option>
+          <option name="actionN" value="action2">List Top 3 Blockers</option>
+          <option name="actionN" value="action3">Make and display scrimmage teams</option>
+          <option name="actionN" value="action4">Quit</option>
+         </select>
+         <input class="gobutton" type="button" name="go" value="GO"/>
+        </form>
+    {% endif %}
+
+    <!--<form>-->
+        <!--<input type="text" name="action"/>-->
+        <!--<input type="submit" value="Select an action"/>-->
+    <!--</form>-->
 
     <p>{{msg}}</p>
 
