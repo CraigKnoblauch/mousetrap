@@ -19,6 +19,8 @@ app = Flask("Verde Valley Volleyball")
 @app.route("/")
 def getRosterId():
     roster_id = request.args.get("rosterN")
+    should_go = False
+    view.rosterSelected = False
 
     if not roster_id:
         # Do nothing
@@ -30,9 +32,25 @@ def getRosterId():
         view.rosterSelected = True
         display = render_template("home.html", rosterSelected=view.rosterSelected)
 
+    if view.rosterSelected:
+        should_go = request.args.get("go")
+
+    if not should_go:
+        # Do nothing
+        pass
+
+    else:
+        # TODO, request from GO, if exists, then request from actionN
+        action_id = request.args.get("actionN")
+
+        # Use the action_id for the controller
+        action_id = int(action_id[-1])
+        msg = controller.goAction(action_id)
+        display = render_template("home.html", rosterSelected=view.rosterSelected, msg=msg)
+
     return display
 
-def getActionCode():
+def getActionCode(): # AJAX request for this
     if view.rosterSelected:
         action_code = request.args.get("actionN")
 
