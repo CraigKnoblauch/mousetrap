@@ -33,20 +33,8 @@ def getRosterId():
         display = render_template("home.html", rosterSelected=view.rosterSelected)
 
     if view.rosterSelected:
-        should_go = request.args.get("go")
-
-    if not should_go:
-        # Do nothing
-        pass
-
-    else:
-        # TODO, request from GO, if exists, then request from actionN
-        action_id = request.args.get("actionN")
-
-        # Use the action_id for the controller
-        action_id = int(action_id[-1])
-        msg = controller.goAction(action_id)
-        display = render_template("home.html", rosterSelected=view.rosterSelected, msg=msg)
+        attackers = controller.goAction(1)
+        display = render_template("home.html", rosterSelected=view.rosterSelected, top_attackers=attackers)
 
     return display
 

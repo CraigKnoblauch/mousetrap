@@ -30,23 +30,27 @@
     </form>
 
     {% if rosterSelected %}
-        <form>Choose an action
-         <select>
-          <option name="actionN" value="action1">List Top 3 Attackers</option>
-          <option name="actionN" value="action2">List Top 3 Blockers</option>
-          <option name="actionN" value="action3">Make and display scrimmage teams</option>
-          <option name="actionN" value="action4">Quit</option>
-         </select>
-         <input class="gobutton" type="submit" name="go" value="GO"/>
-        </form>
+    <p>
+        <!-- List the top 3 attackers, action code 1 -->
+        <h2>Top 3 Attackers</h2>
+        <ol>
+            {% for attacker in top_attackers %}
+            <li>{{attacker}}</li>
+            {% endfor %}
+        </ol>
+
+        <!-- List the top 3 blockers, action code 2 -->
+        <h2>Top 3 Blockers</h2>
+        <ol>
+            {% for blocker in top_blockers %}
+            <li>{{blocker}}</li>
+            {% endfor %}
+        </ol>
+
+        <!-- Scrimmage teams -->
+        <h2>Teams</h2>
+    </p>
     {% endif %}
-
-    <!--<form>-->
-        <!--<input type="text" name="action"/>-->
-        <!--<input type="submit" value="Select an action"/>-->
-    <!--</form>-->
-
-    <p>{{msg}}</p>
 
 </body>
 
