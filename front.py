@@ -33,7 +33,8 @@ def getRosterId():
         display = render_template("home.html", rosterSelected=view.rosterSelected)
 
     if view.rosterSelected:
-        should_go = request.args.get("go")
+        while not should_go:
+            should_go = request.args.get("go")
 
     if not should_go:
         # Do nothing
