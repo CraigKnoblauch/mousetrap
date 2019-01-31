@@ -34,13 +34,13 @@ class Controller:
         num_players = self.roster.getNumPlayers()
 
         # Make an appropriate number of teams
-        self.teams = [Team(team_number) for team_number in range(1, num_players % 6)]
+        self.teams = [Team(team_number) for team_number in range(0, num_players//6)]
 
         # Blockers and Attackers of the same name exist in each list, thus we need to take
         # them from each list as we go.
         attacker = self.players_by_attack.pop(0)
         blocker  = self.players_by_block.pop(0)
-        for i in range(1, 6//2):
+        for i in range(0, 6//2):
             for team in self.teams:
                 if not team.isFull():
                     # Confirm the attacker isn't in the team. This would happen if that player
