@@ -26,3 +26,6 @@ class Roster:
     def getCopyOfPlayers(self):
         return self.players[:]
 
+    def getNumPlayers(self):
+        return len(self.players)
+

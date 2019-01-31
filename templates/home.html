@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Verde Valley Volleyball</title>
-    <link href="../styles/style.css" rel="stylesheet" type="text/css">
 
     <style>
         .gobutton {
@@ -49,6 +48,15 @@
 
         <!-- Scrimmage teams -->
         <h2>Teams</h2>
+        {% for team in teams %}
+        <h3>Team {{team.getName()}}</h3>
+            <ol>
+            {% for player in team.players %}
+                <li>{{player}}</li>
+            {% endfor %}
+            </ol>
+        {% endfor %}
+
     </p>
     {% endif %}
 

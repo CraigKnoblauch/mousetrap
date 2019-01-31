@@ -29,6 +29,41 @@ class Controller:
     def getTop3Blockers(self):
         return self.players_by_block[:3]
 
+    def makeTeams(self):
+        # For the number of teams of 6 possible, distribute the top players among these teams.
+        num_players = self.roster.getNumPlayers()
+
+        # Make an appropriate number of teams
+        self.teams = [Team(team_number) for team_number in range(1, num_players % 6)]
+
+        # Blockers and Attackers of the same name exist in each list, thus we need to take
+        # them from each list as we go.
+        attacker = self.players_by_attack.pop(0)
+        blocker  = self.players_by_block.pop(0)
+        for i in range(1, 6//2):
+            for team in self.teams:
+                if not team.isFull():
+                    # Confirm the attacker isn't in the team. This would happen if that player
+                    # is there as a blocker role
+                    while attacker in self.players_by_block:
+                        self.players_by_block.remove(attacker)
+                    team.addPlayer(attacker)
+
+                    # Get another attacker for the next iteration of the loop
+                    attacker = self.players_by_attack.pop(0)
+
+
+                    # Do the same as we just did for attackers to blockers
+                    while blocker in self.players_by_attack:
+                        self.players_by_attack.remove(blocker)
+                    team.addPlayer(blocker)
+
+                    # Get another blocker for the next iteration of the loop
+                    blocker = self.players_by_block.pop(0)
+
+
+
+
     def goAction(self, action_code):
         # Action 1 --> Return top 3 attackers
         # Action 2 --> Return top 3 blockers
@@ -38,7 +73,8 @@ class Controller:
         elif action_code == 2:
             result = self.getTop3Blockers()
         elif action_code == 3:
-            result = "UNSUPPORTED"
+            self.makeTeams()
+            result = self.teams
 
         return result
 
