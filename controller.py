@@ -58,8 +58,9 @@ class Controller:
                         self.players_by_attack.remove(blocker)
                     team.addPlayer(blocker)
 
-                    # Get another blocker for the next iteration of the loop
-                    blocker = self.players_by_block.pop(0)
+                    # As long as there is another blocker, get another blocker for the next iteration of the loop.
+                    if len(self.players_by_block) > 0:
+                        blocker = self.players_by_block.pop(0)
 
 
 
