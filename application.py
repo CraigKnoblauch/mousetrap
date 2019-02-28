@@ -10,10 +10,10 @@ class View:
     def __init__(self):
         self.rosterSelected = False
 
-
-view = View()
-controller = Controller()
-app = Flask("Verde Valley Volleyball")
+if __name__ == '__main__':
+	view = View()
+	controller = Controller()
+	app = Flask("Verde Valley Volleyball")
 
 
 @app.route("/")
