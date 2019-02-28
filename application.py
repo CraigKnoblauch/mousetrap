@@ -10,12 +10,6 @@ class View:
     def __init__(self):
         self.rosterSelected = False
 
-if __name__ == '__main__':
-	view = View()
-	controller = Controller()
-	app = Flask("Verde Valley Volleyball")
-
-
 @app.route("/")
 def getRosterId():
     roster_id = request.args.get("rosterN")
@@ -39,7 +33,8 @@ def getRosterId():
 
     return display
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
+	view = View()
+	controller = Controller()
+	app = Flask("Verde Valley Volleyball")
     app.run(port=5000, debug=True)
-
