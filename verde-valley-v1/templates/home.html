@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verde Valley Volleyball</title>
+
+    <style>
+        .gobutton {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Verde Valley Volleyball Team Tool</h1>
+
+    <!-- Radio buttons of options, unfortunately hardcoded number, TODO use Jinja to fix that -->
+    <form>Select a roster
+        <input type="radio" name="rosterN" value="roster1">1</>
+        <input type="radio" name="rosterN" value="roster2">2</>
+        <input type="radio" name="rosterN" value="roster3">3</>
+        <input type="radio" name="rosterN" value="roster4">4</>
+        <input type="radio" name="rosterN" value="roster5">5</>
+        <input type="submit" value="Select"/>
+    </form>
+
+    {% if rosterSelected %}
+    <p>
+        <!-- List the top 3 attackers, action code 1 -->
+        <h2>Top 3 Attackers</h2>
+        <ol>
+            {% for attacker in top_attackers %}
+            <li>{{attacker}}</li>
+            {% endfor %}
+        </ol>
+
+        <!-- List the top 3 blockers, action code 2 -->
+        <h2>Top 3 Blockers</h2>
+        <ol>
+            {% for blocker in top_blockers %}
+            <li>{{blocker}}</li>
+            {% endfor %}
+        </ol>
+
+        <!-- Scrimmage teams -->
+        <h2>Teams</h2>
+        {% for team in teams %}
+        <h3>Team {{team.getName()}}</h3>
+            <ol>
+            {% for player in team.players %}
+                <li>{{player}}</li>
+            {% endfor %}
+            </ol>
+        {% endfor %}
+
+    </p>
+    {% endif %}
+
+</body>
+
+</html>
